@@ -1,4 +1,4 @@
-import { PresentationPageLoader } from "@/components/presentation/PresentationPageLoader";
+import { PresentationClient } from "@/components/presentation/PresentationClient";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function PresentacionPage() {
-  return <PresentationPageLoader />;
+  return <PresentationClient />;
 }
