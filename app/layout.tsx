@@ -14,8 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className="noise-bg antialiased">{children}</body>
+    <html lang="es" suppressHydrationWarning>
+      <body className="noise-bg antialiased" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

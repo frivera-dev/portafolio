@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const links = [
   { label: "Sobre mí", href: "#about" },
   { label: "Experiencia", href: "#experience" },
   { label: "Stack", href: "#stack" },
   { label: "Contacto", href: "#contact" },
+  { label: "Presentación", href: "/presentacion", isPage: true },
 ];
 
 export function Navbar() {
@@ -40,33 +42,47 @@ export function Navbar() {
             : "none",
         }}
       >
-        <span
+        <Link
+          href="/"
           className="font-display font-bold text-sm mr-4 px-2"
           style={{ color: "#818cf8" }}
         >
           FR
-        </span>
-        {links.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setActive(link.href)}
-            className="relative px-3 py-1.5 text-sm rounded-full transition-colors duration-200"
-            style={{
-              color: active === link.href ? "#ffffff" : "#ffffff",
-            }}
-          >
-            {active === link.href && (
-              <motion.span
-                layoutId="nav-pill"
-                className="absolute inset-0 rounded-full"
-                style={{ background: "rgba(129, 140, 248, 0.12)" }}
-                transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-              />
-            )}
-            <span className="relative z-10">{link.label}</span>
-          </a>
-        ))}
+        </Link>
+        {links.map((link) =>
+          "isPage" in link && link.isPage ? (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="relative px-3 py-1.5 text-sm rounded-full transition-colors duration-200"
+              style={{
+                color: "#ffffff",
+                background: "rgba(212, 165, 116, 0.12)",
+                border: "1px solid rgba(212, 165, 116, 0.25)",
+              }}
+            >
+              <span className="relative z-10">{link.label}</span>
+            </Link>
+          ) : (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setActive(link.href)}
+              className="relative px-3 py-1.5 text-sm rounded-full transition-colors duration-200"
+              style={{ color: "#ffffff" }}
+            >
+              {active === link.href && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "rgba(129, 140, 248, 0.12)" }}
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
+                />
+              )}
+              <span className="relative z-10">{link.label}</span>
+            </a>
+          )
+        )}
       </nav>
     </motion.header>
   );

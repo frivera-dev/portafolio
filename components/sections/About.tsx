@@ -6,9 +6,9 @@ import { personal } from "@/lib/data";
 
 const stats = [
   { value: "5+", label: "Años en eCommerce", sub: "" },
-  { value: "60+", label: "Marcas gestionadas históricamente", sub: "" },
-  { value: "4+", label: "Plataformas eCommerce", sub: "Shopify · VTEX · Magento · WordPress" },
-  { value: "FS", label: "Full Stack Dev", sub: "" },
+  { value: "3+", label: "Años como desarrollador web", sub: "" },
+  { value: "6", label: "Años por plataforma", sub: "VTEX · Magento · Shopify · WordPress" },
+  { value: "60+", label: "Marcas gestionadas", sub: "VTEX · Magento · Shopify · WordPress" },
 ];
 
 export function About() {

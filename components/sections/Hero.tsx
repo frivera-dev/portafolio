@@ -95,6 +95,17 @@ export function Hero() {
             >
               Ver experiencia
             </a>
+            <a
+              href="/presentacion"
+              className="px-6 py-3 rounded-full font-medium text-sm transition-all duration-300 hover:scale-105"
+              style={{
+                border: "1px solid rgba(212, 165, 116, 0.3)",
+                color: "#d4a574",
+                background: "rgba(212, 165, 116, 0.08)",
+              }}
+            >
+              Presentación
+            </a>
           </motion.div>
 
           {/* Brands ticker */}

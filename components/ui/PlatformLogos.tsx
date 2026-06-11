@@ -59,14 +59,14 @@ const WordPressLogo = () => (
   </svg>
 );
 
-const logoMap: Record<string, React.FC> = {
+export const platformLogoMap: Record<string, React.FC> = {
   VTEX: VtexLogo,
   Magento: MagentoLogo,
   Shopify: ShopifyLogo,
   WordPress: WordPressLogo,
 };
 
-const brandColors: Record<string, { color: string; glow: string; bg: string }> = {
+export const platformBrandColors: Record<string, { color: string; glow: string; bg: string }> = {
   VTEX:      { color: "#F71963", glow: "rgba(247, 25,  99,  0.15)", bg: "rgba(247, 25,  99,  0.06)" },
   Magento:   { color: "#EE672F", glow: "rgba(238, 103, 47,  0.15)", bg: "rgba(238, 103, 47,  0.06)" },
   Shopify:   { color: "#96BF48", glow: "rgba(150, 191, 72,  0.15)", bg: "rgba(150, 191, 72,  0.06)" },
@@ -80,8 +80,8 @@ interface PlatformCardProps {
 }
 
 function PlatformCard({ name, years, index }: PlatformCardProps) {
-  const Logo = logoMap[name];
-  const brand = brandColors[name] ?? { color: "#818cf8", glow: "rgba(129,140,248,0.15)", bg: "rgba(129,140,248,0.06)" };
+  const Logo = platformLogoMap[name];
+  const brand = platformBrandColors[name] ?? { color: "#818cf8", glow: "rgba(129,140,248,0.15)", bg: "rgba(129,140,248,0.06)" };
 
   return (
     <motion.div
