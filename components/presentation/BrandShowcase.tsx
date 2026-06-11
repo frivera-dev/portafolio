@@ -67,11 +67,7 @@ export function BrandMarquee({ brands }: { brands: FeaturedBrand[] }) {
         style={{ background: "linear-gradient(to left, #050505, transparent)" }}
       />
 
-      <motion.div
-        className="flex gap-6 w-max"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-      >
+      <div className="brand-marquee-track flex gap-6 w-max">
         {doubled.map((brand, i) => (
           <div
             key={`${brand.name}-${i}`}
@@ -95,7 +91,7 @@ export function BrandMarquee({ brands }: { brands: FeaturedBrand[] }) {
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,6 @@ import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
   useInView,
 } from "framer-motion";
 import {
@@ -18,7 +17,6 @@ import {
   education,
 } from "@/lib/data";
 import { BrandMarquee, BrandGrid } from "./BrandShowcase";
-import { SmoothScroll } from "./SmoothScroll";
 import { AsciiBackground } from "./AsciiBackground";
 import { AmbientOrbs } from "./AmbientOrbs";
 import { PlatformExperienceBlock } from "./PlatformExperienceBlock";
@@ -53,7 +51,7 @@ function AnimatedCounter({ value }: { value: string }) {
 
 function ScrollProgress() {
   const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const scaleX = scrollYProgress;
 
   return (
     <motion.div
@@ -67,30 +65,9 @@ function ScrollProgress() {
 }
 
 function HeroSection() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <motion.div
-        style={{ y, opacity, scale }}
-        className="absolute inset-0 pointer-events-none"
-      >
-        <div
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30"
-          style={{ background: "radial-gradient(circle, #d4a574 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[100px] opacity-20"
-          style={{ background: "radial-gradient(circle, #818cf8 0%, transparent 70%)" }}
-        />
-      </motion.div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none presentation-hero-glow" aria-hidden />
 
       <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
         <motion.div
@@ -571,27 +548,24 @@ function CTASection() {
 
 export function PresentationDeck() {
   return (
-    <SmoothScroll>
-      <main className="presentation-page relative min-h-screen" style={{ background: "#050505" }}>
-        <AsciiBackground />
-        <AmbientOrbs />
-        <div className="presentation-scanline" aria-hidden />
-        <ScrollProgress />
-        <div className="relative z-10">
-          <HeroSection />
-          <SectionDivider />
-          <StatsSection />
-          <SectionDivider />
-          <AboutSection />
-          <SectionDivider />
-          <BrandsSection />
-          <SectionDivider />
-          <ValueSection />
-          <SectionDivider />
-          <TimelineSection />
-          <CTASection />
-        </div>
-      </main>
-    </SmoothScroll>
+    <main className="presentation-page relative min-h-screen" style={{ background: "#050505" }}>
+      <AsciiBackground />
+      <AmbientOrbs />
+      <ScrollProgress />
+      <div className="relative z-10">
+        <HeroSection />
+        <SectionDivider />
+        <StatsSection />
+        <SectionDivider />
+        <AboutSection />
+        <SectionDivider />
+        <BrandsSection />
+        <SectionDivider />
+        <ValueSection />
+        <SectionDivider />
+        <TimelineSection />
+        <CTASection />
+      </div>
+    </main>
   );
 }
